@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="t">
+<title id="t">Busy Bee emblem</title>
+<g transform="translate(0 0) scale(1)">
+<path fill="#1c2220" d="M29.5 28C21.5 28 10.5 23 4.5 10.5C13.5 9.6 25.5 15.5 29.5 28Z"/>
+<path fill="#1c2220" d="M34.5 28C42.5 28 53.5 23 59.5 10.5C50.5 9.6 38.5 15.5 34.5 28Z"/>
+<path fill="none" stroke="#1c2220" stroke-width="2.8" stroke-linecap="square" d="M29.6 12L25.8 4M34.4 12L38.2 4"/>
+<circle fill="#1c2220" cx="32" cy="16.8" r="6"/>
+<path fill="#1c2220" d="M23 33A9 9 0 0 1 41 33V34.5H23Z"/>
+<path fill="#1c2220" d="M23 39.5H41V44H23Z"/>
+<path fill="#1c2220" d="M23 49H41V50L32 60L23 50Z"/>
+</g>
+</svg>
