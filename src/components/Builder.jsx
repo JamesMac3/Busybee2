@@ -498,7 +498,7 @@ export default function Builder() {
     shownStep.current = step;
     const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 64;
     const top = stageRef.current.getBoundingClientRect().top;
-    if (top < header || top > window.innerHeight * 0.5) {
+    if (window.innerWidth < 760 || top < header || top > window.innerHeight * 0.5) {
       window.scrollTo({ top: window.scrollY + top - header - 8, behavior: scrollBehavior() });
     }
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

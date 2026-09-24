@@ -1,0 +1,63 @@
+/* Phone-only workspace: a centered plan and controls in the same view. */
+@media screen and (max-width: 759px) {
+  .builder-section { padding-top:18px; }
+  .builder-head h1 { font-size:clamp(1.6rem,6.5vw,2rem); }
+  .builder-lede { font-size:.95rem; margin-top:8px; }
+  .builder-stage { margin-top:18px; }
+  .stage-rail { margin-bottom:16px; }
+  .slide-viewport { height:auto !important; overflow:visible; transition:none; }
+  .slide-track { display:block; transform:none; transition:none; }
+  .slide:not(.is-active) { display:none; }
+  .slide { width:100%; padding:0; }
+  .slide.is-active .brick, .slide.is-active .bricks > * { animation:none; transform:none; clip-path:none; }
+  .step-intro { gap:10px; margin-bottom:12px; padding-bottom:10px; }
+  .step-intro .hexnum-lg { width:38px; height:44px; flex-shrink:0; }
+  .step-intro h2 { font-size:1.35rem; }
+  .step-kicker { font-size:.65rem; letter-spacing:.06em; }
+  .step-note { font-size:.82rem; line-height:1.4; margin-top:4px; }
+  .plan-work { display:flex; flex-direction:column; gap:10px; }
+  .plan-work > div.brick { order:-1; position:relative; }
+  .plan-panel { padding:7px; width:100%; min-width:0; box-sizing:border-box; box-shadow:0 3px 14px #142b1610; }
+  .plan-bar { gap:5px; margin-bottom:6px; }
+  .plan-title { font-size:.62rem; letter-spacing:.025em; gap:5px; flex:1; min-width:0; }
+  .plan-label-mark { width:6px; height:6px; }
+  .playback { gap:4px; }
+  .playback .mini-btn { padding:0 8px; min-height:44px; font-size:.72rem; }
+  .plan-stage { display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .plan-svg { width:100%; height:auto; max-height:30svh; aspect-ratio:640 / 440; margin-inline:auto; }
+  .marker-art { transform:scale(2.1); }
+  .marker { filter:drop-shadow(0 0 1.5px white); }
+  .legend { gap:4px 9px; margin-top:6px; }
+  .legend li { font-size:.65rem; gap:4px; }
+  .legend .svc-symbol { width:15px; height:12px; }
+  .plan-note, .plan-panel.is-compact .plan-note { margin-top:5px; font-size:.65rem; line-height:1.35; }
+  .toggle-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:5px; }
+  .svc-toggle { min-height:46px; padding:7px; gap:6px; font-size:.76rem; }
+  .svc-toggle .svc-symbol { width:19px; }
+  .toggle-actions { margin-top:6px; }
+  .toggle-actions .mini-btn { flex:1; }
+  .proposal-mini { margin-top:8px; }
+  .property-layout { gap:10px; }
+  .property-controls { display:contents; }
+  .property-layout .examples { order:0; }
+  .property-layout > div.brick { order:1; }
+  .property-layout .address-form { order:2; }
+  .examples legend { font-size:.75rem; margin-bottom:6px; }
+  .example-list { grid-template-columns:repeat(3,minmax(0,1fr)) !important; gap:5px; }
+  .example { flex-direction:column; align-items:flex-start; justify-content:center; padding:8px 5px; gap:3px; min-height:60px; }
+  .example-city { font-size:.72rem; overflow-wrap:anywhere; }
+  .example-type { font-size:.64rem; line-height:1.3; }
+  .gis-disclosure { font-size:.75rem; }
+  .address-row { flex-wrap:wrap; }
+  .address-row input { min-width:0; width:100%; }
+  input, select, textarea { font-size:16px; }
+}
+@media screen and (max-width:759px) and (max-height:600px) {
+  .plan-work > div.brick { position:static; }
+  .plan-svg { max-height:none; }
+}
+
+@media screen and (max-width:759px) {
+  .plan-work .legend { display:none; }
+}
+

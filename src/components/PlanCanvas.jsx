@@ -132,10 +132,10 @@ function MowOverlay({ route, clips, uid, register }) {
         </g>
       ))}
       <path className="guide guide-transit" d={guideD(route.segs, ['transit'])} />
-      <g ref={marker} className="marker marker-mow">
+      <g ref={marker} className="marker marker-mow"><g className="marker-art">
         <rect x="-6.5" y="-5" width="13" height="10" />
         <path d="M-2 -2.6 2 0 -2 2.6" />
-      </g>
+      </g></g>
     </g>
   );
 }
@@ -173,9 +173,9 @@ function EdgeOverlay({ route, register }) {
         />
       ))}
       <path className="guide guide-transit" d={guideD(route.segs, ['transit'])} />
-      <g ref={marker} className="marker marker-edge">
+      <g ref={marker} className="marker marker-edge"><g className="marker-art">
         <rect x="-4" y="-4" width="8" height="8" transform="rotate(45)" />
-      </g>
+      </g></g>
     </g>
   );
 }
@@ -230,9 +230,9 @@ function BedsOverlay({ route, uid, register }) {
         <path key={`o${i}`} className="bed-outline" d={polyD(b.poly)} />
       ))}
       <path className="guide guide-transit" d={guideD(route.segs, ['transit'])} />
-      <g ref={marker} className="marker marker-beds">
+      <g ref={marker} className="marker marker-beds"><g className="marker-art">
         <rect x="-4.5" y="-4.5" width="9" height="9" />
-      </g>
+      </g></g>
     </g>
   );
 }
@@ -295,10 +295,10 @@ function ShrubsOverlay({ route, register }) {
         <line ref={bladeB} x1="-6" y1="0" x2="6" y2="0" />
         <circle r="1.4" />
       </g>
-      <g ref={marker} className="marker marker-shrubs">
+      <g ref={marker} className="marker marker-shrubs"><g className="marker-art">
         <circle r="5" />
         <circle r="1.6" className="marker-dot" />
-      </g>
+      </g></g>
     </g>
   );
 }
@@ -334,9 +334,9 @@ function SeasonalOverlay({ route, register }) {
           transform={`translate(${l.pt[0].toFixed(1)} ${l.pt[1].toFixed(1)}) rotate(${l.rot})`}
         />
       ))}
-      <g ref={marker} className="marker marker-seasonal">
+      <g ref={marker} className="marker marker-seasonal"><g className="marker-art">
         <path d="M5.5 0 -4 -4.8 -4 4.8Z" />
-      </g>
+      </g></g>
     </g>
   );
 }
@@ -536,3 +536,4 @@ export default function PlanCanvas({ property, active, playing, replayKey, reduc
     </svg>
   );
 }
+
