@@ -37,6 +37,11 @@ function lawnHoles(lawn, p) {
     const b = bbox(bed);
     if (pointInPoly([b.cx, b.cy], lawn.poly)) holes.push({ x0: b.x0 - 3, y0: b.y0 - 3, x1: b.x1 + 3, y1: b.y1 + 3 });
   }
+  // Aerial traces can contain outbuildings within a larger turf outline.
+  if (p.imageDerived) for (const building of p.buildings) {
+    const b = bbox(building.poly);
+    if (pointInPoly([b.cx, b.cy], lawn.poly)) holes.push({ x0:b.x0 - 3, y0:b.y0 - 3, x1:b.x1 + 3, y1:b.y1 + 3 });
+  }
   return holes;
 }
 
@@ -190,7 +195,7 @@ function buildShrubs(p, net, rng) {
   const targets = [];
   let pos = p.start;
   const plants = nearestFirst(
-    [...p.shrubs.map((s) => ({ ...s, kind: 'shrub' })), ...p.trees.map((t) => ({ ...t, kind: 'tree' }))],
+    [...p.shrubs.map((s) => ({ ...s, kind: 'shrub' })), ...p.trees.filter((t) => t.prunable !== false).map((t) => ({ ...t, kind: 'tree' }))],
     pos,
     (c) => [c.cx, c.cy],
   );
@@ -291,3 +296,4 @@ export function scopeFacts(p) {
     improvements: p.improvements.length,
   };
 }
+

@@ -35,6 +35,8 @@ const grid = (x0, y0, x1, y1, nx, ny) => {
   return pts;
 };
 
+import { CAMPUS } from './campus.js';
+
 export const FIXTURES = [
   {
     id: 'murfreesboro',
@@ -225,3 +227,6 @@ export const FIXTURES = [
     ],
   },
 ];
+
+// Fourth example is a manual aerial trace, not a fictional parcel.
+FIXTURES.push(CAMPUS);

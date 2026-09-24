@@ -52,6 +52,15 @@ export default function PlanPanel({ property, active, paused = false, still = fa
   const reduced = reducedMotion || still;
   const [playing, setPlaying] = useState(true);
   const [replayKey, setReplayKey] = useState(0);
+  const [aerialView, setAerialView] = useState('photo');
+  const [photoLoaded, setPhotoLoaded] = useState(false);
+  useEffect(() => { setAerialView('photo'); setPhotoLoaded(false); }, [property.id]);
+  useEffect(() => {
+    if (!property.aerial || paused || still || !photoLoaded) return;
+    if (reduced) { setAerialView('plan'); return; }
+    const timer = setTimeout(() => setAerialView('plan'), 1800);
+    return () => clearTimeout(timer);
+  }, [property.id, paused, still, reduced, photoLoaded]);
 
   return (
     <div className={`plan-panel${compact ? ' is-compact' : ''}${still ? ' is-still' : ''}`}>
@@ -82,20 +91,26 @@ export default function PlanPanel({ property, active, paused = false, still = fa
           )}
         </div>
       </div>
-      <div className="plan-stage">
+      {property.aerial && !still && <div className="aerial-controls" role="group" aria-label="Compare aerial and service plan">
+        <button type="button" className="mini-btn" aria-pressed={aerialView === 'photo'} onClick={() => setAerialView('photo')}>Aerial photo</button>
+        <button type="button" className="mini-btn" aria-pressed={aerialView === 'plan'} onClick={() => { setAerialView('plan'); setReplayKey(k => k + 1); }}>Animated plan</button>
+        <span>Photo → traced service zones</span>
+      </div>}
+      <div className={`plan-stage${property.aerial ? ' aerial-stage' : ''}`}>
         <CanvasBoundary>
           <Suspense fallback={<CanvasLoading />}>
             <PlanCanvas
               key={property.id}
               property={property}
               active={active}
-              playing={playing && !paused}
+              playing={playing && !paused && (!property.aerial || aerialView === 'plan')}
               replayKey={replayKey}
               reduced={reduced}
               label={`${builder.planLabel}: ${property.city} example`}
             />
           </Suspense>
         </CanvasBoundary>
+        {property.aerial && !still && <img key={property.id} className={`aerial-reference${aerialView === 'plan' ? ' is-revealed' : ''}`} src={property.aerial} alt="Supplied Tennessee school aerial, dated February–April 2025; exact location unknown" onLoad={() => setPhotoLoaded(true)} /> }
       </div>
       {!compact && (
         <ul className="legend" aria-label="Legend">
@@ -112,8 +127,7 @@ export default function PlanPanel({ property, active, paused = false, still = fa
         </ul>
       )}
       <p className="plan-note">
-        Sample geometry for a fictional property — not a client site, a measured map, or live tracking. Data source:{' '}
-        {PROVIDER.name}.
+        {property.sourceNote || `Sample geometry for a fictional property — not a client site, a measured map, or live tracking. Data source: ${PROVIDER.name}.`}
       </p>
     </div>
   );

@@ -100,7 +100,7 @@ export default function ProposalCard({ property }) {
             <Row id="property" label="Property" control="ctl-property" change={change}>
               {propertyTypes[property.propertyType]} · {property.label}
               <span className="pc-sub">
-                {property.city}, TN · fictional example. Your address is confirmed with the request.
+                {property.imageDerived ? 'Tennessee aerial study · location unknown; manually interpreted.' : `${property.city}, TN · fictional example.`} Your address is confirmed with the request.
               </span>
             </Row>
             {!d.empty && (

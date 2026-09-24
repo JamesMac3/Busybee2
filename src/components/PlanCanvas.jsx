@@ -34,17 +34,18 @@ function BasePlan({ p }) {
   return (
     <g className="plan-base">
       <rect className="pl-ground" x="0" y="0" width="640" height="440" />
-      <rect className="pl-sidewalk" x="0" y="370" width="640" height="14" />
+      <g style={p.imageDerived ? { display: 'none' } : undefined}><rect className="pl-sidewalk" x="0" y="370" width="640" height="14" />
       <rect className="pl-street" x="0" y="384" width="640" height="56" />
-      <line className="pl-street-line" x1="0" y1="414" x2="640" y2="414" />
+      <line className="pl-street-line" x1="0" y1="414" x2="640" y2="414" /></g>
       {p.paving.map((poly, i) => (
         <path key={`pv${i}`} className="pl-paving" d={polyD(poly)} />
       ))}
       {p.walks.map((w, i) => (
         <path key={`wk${i}`} className="pl-walkway" d={polyD(w.pts, false)} style={{ strokeWidth: w.width }} />
       ))}
+      {p.surfaces?.map((s, i) => <path key={`surface${i}`} className="campus-sports" d={polyD(s.poly)} />)}
       {p.lawns.map((l, i) => (
-        <path key={`ln${i}`} className="pl-lawn" d={polyD(l.poly)} />
+        <path key={`ln${i}`} className={`pl-lawn${l.uncertain ? ' is-uncertain' : ''}`} d={polyD(l.poly)} />
       ))}
       {p.beds.map((poly, i) => (
         <path key={`bd${i}`} className="pl-bed" d={polyD(poly)} />
@@ -62,13 +63,13 @@ function BasePlan({ p }) {
         </g>
       ))}
       <g className="pl-labels" aria-hidden="true">
-        {p.buildings.map((b) => (
-          <text key={b.label} x={b.labelAt[0]} y={b.labelAt[1]}>
+        {p.buildings.map((b, i) => (
+          <text key={i} x={b.labelAt[0]} y={b.labelAt[1]}>
             {b.label}
           </text>
         ))}
       </g>
-      <rect className="pl-boundary" x="14" y="14" width="612" height="352" pathLength="1" />
+      {!p.imageDerived && <rect className="pl-boundary" x="14" y="14" width="612" height="352" pathLength="1" />}
     </g>
   );
 }
@@ -515,7 +516,7 @@ export default function PlanCanvas({ property, active, playing, replayKey, reduc
   return (
     <svg
       ref={svgRef}
-      className={`plan-svg${reduced ? ' is-still' : ''}`}
+      className={`plan-svg${reduced ? ' is-still' : ''}${property.imageDerived ? ' campus-svg' : ''}`}
       viewBox="0 0 640 440"
       role="img"
       aria-labelledby={`${uid}-title ${uid}-desc`}
@@ -523,7 +524,7 @@ export default function PlanCanvas({ property, active, playing, replayKey, reduc
     >
       <title id={`${uid}-title`}>{label}</title>
       <desc id={`${uid}-desc`}>
-        Stylized sample site plan for a fictional {property.label.toLowerCase()} in {property.city}: {property.summary}{' '}
+        {property.imageDerived ? 'Manual aerial interpretation. ' : `Stylized sample site plan for a fictional ${property.label.toLowerCase()} in ${property.city}: `}{property.summary}{' '}
         {active.length ? `Showing: ${active.join(', ')}.` : 'No services selected.'}
       </desc>
       <BasePlan p={property} />
@@ -536,4 +537,5 @@ export default function PlanCanvas({ property, active, playing, replayKey, reduc
     </svg>
   );
 }
+
 

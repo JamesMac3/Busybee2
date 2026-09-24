@@ -160,7 +160,7 @@ export default function RequestPanel({ property }) {
             required
           />
           <p id={`${uid}-addr-hint`} className="field-hint">
-            One property per line. The {property.city} plan is a fictional example and doesn’t count as your
+            One property per line. The selected plan is an illustrative study and doesn’t count as your
             property.
           </p>
           {errorFor('addresses')}

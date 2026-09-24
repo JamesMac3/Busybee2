@@ -32,7 +32,7 @@ import Icon from './Icon.jsx';
 
 const SLIDE_MS = 560;
 const INTROS = [
-  'Pick one of three example sites. Your actual address comes later, with the request.',
+  'Choose a sample site or explore the school aerial study. Your actual address comes later, with the request.',
   'Every service you select appears on the plan and in the proposal. They run together.',
   'Set how often visits happen and how the agreement should run. Every choice is a request for review.',
   'Check the draft, adjust anything with “Change”, then request a review.',
@@ -151,7 +151,7 @@ function PropertySlide({ property, active }) {
         <div className="property-controls">
           <fieldset id="ctl-property" className="examples brick" style={{ '--i': 1 }}>
             <legend>
-              Example property <span className="example-tag">Fictional sample sites</span>
+              Example property <span className="example-tag">3 samples + aerial study</span>
             </legend>
             <div className="example-list bricks">
               {listExamples().map((f) => (
@@ -165,7 +165,7 @@ function PropertySlide({ property, active }) {
                   />
                   <span className="example-city">{f.city}</span>
                   <span className="example-type">{f.label}</span>
-                  <span className="visually-hidden">{propertyTypes[f.propertyType]}, fictional example</span>
+                  <span className="visually-hidden">{propertyTypes[f.propertyType]}, {f.imageDerived ? 'manually traced aerial' : 'fictional example'}</span>
                 </label>
               ))}
             </div>

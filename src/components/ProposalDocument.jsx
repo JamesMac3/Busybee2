@@ -64,7 +64,7 @@ export default function ProposalDocument({ property }) {
           ))}
         </ol>
         <p className="doc-foot">
-          Sample document from the Busy Bee Lawn proposal builder preview. The plan shows a fictional example property,
+          Sample document from the Busy Bee Lawn proposal builder preview. The plan shows illustrative property geometry,
           not a measured map.
         </p>
       </section>
@@ -75,7 +75,7 @@ export default function ProposalDocument({ property }) {
           <dl>
             <Detail label="Property">
               {propertyTypes[property.propertyType]} · {property.label}
-              <span className="pc-sub">{property.city}, TN · fictional example property</span>
+              <span className="pc-sub">{property.imageDerived ? 'Tennessee aerial study · location unknown; not measured' : `${property.city}, TN · fictional example property`}</span>
             </Detail>
             <Detail label="Services · sample zones">
               <ul className="doc-services">

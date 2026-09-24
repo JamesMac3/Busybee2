@@ -35,7 +35,7 @@ export function getProperty(id) {
 export async function lookupAddress(query) {
   const q = norm(query);
   if (!q) return { status: 'empty', suggestions: [] };
-  const hit = FIXTURES.find((f) => norm(f.address) === q || norm(f.address).startsWith(q + ' '));
+  const hit = FIXTURES.find((f) => !f.imageDerived && (norm(f.address) === q || norm(f.address).startsWith(q + ' ')));
   if (hit && q.length > 8) return { status: 'example', property: hit };
   const suggestions = FIXTURES.filter((f) => q.includes(norm(f.city)));
   return { status: 'unavailable', suggestions: suggestions.length ? suggestions : FIXTURES };

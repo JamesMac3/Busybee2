@@ -61,3 +61,24 @@
   .plan-work .legend { display:none; }
 }
 
+
+/* Aerial study: matching image coordinates make the crossfade a direct comparison. */
+.aerial-controls { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-bottom:10px; }
+.aerial-controls .mini-btn { min-height:44px; }
+.aerial-controls [aria-pressed="true"] { background:#143e2b; color:#fff; }
+.aerial-controls span { font-size:.72rem; color:#576158; }
+.aerial-reference { position:absolute; inset:0; width:100%; height:100%; object-fit:fill; opacity:1; transition:opacity 1.6s ease-in-out; pointer-events:none; }
+.aerial-reference.is-revealed { opacity:0; }
+.campus-sports { fill:#c6a98c; stroke:#a38e76; stroke-width:1; }
+.campus-svg .pl-labels text { font-size:7px; letter-spacing:.4px; }
+.campus-svg .pl-building { animation:none; stroke-dasharray:none; }
+.campus-svg .pl-lawn.is-uncertain { stroke:#9a8131; stroke-width:1; stroke-dasharray:3 2; }
+.campus-svg .pl-bed { stroke:#9a8131; stroke-width:1; stroke-dasharray:2 2; }
+@media screen and (max-width:759px) {
+  .example-list { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  .aerial-controls { gap:5px; margin-bottom:6px; }
+  .aerial-controls .mini-btn { flex:1; }
+  .aerial-controls span { display:none; }
+}
+@media (prefers-reduced-motion:reduce) { .aerial-reference { transition:none; } }
+@media print { .aerial-reference, .aerial-controls { display:none !important; } }

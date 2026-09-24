@@ -25,6 +25,7 @@ export const nav = [
 
 export const propertyTypes = {
   commercial: 'Commercial property',
+  education: 'School campus study',
   hoa: 'HOA / shared community',
 };
 
@@ -44,7 +45,7 @@ export const proposalCopy = {
   empty: 'Select at least one service on the plan to start your proposal.',
   requestLead: 'Confirm your property and contact details so this scope can be reviewed.',
   tiers: [
-    { id: 'sample', label: 'Sample demonstration', text: 'Plan geometry from a fictional example property.' },
+    { id: 'sample', label: 'Sample demonstration', text: 'Illustrative geometry from a sample site or manual aerial study.' },
     { id: 'requested', label: 'Requested scope + estimate', text: 'Your selections and an illustrative estimate from sample rates.' },
     { id: 'approved', label: 'Company-approved quote', text: 'Issued by Busy Bee Lawn only after property and scope review.' },
   ],
